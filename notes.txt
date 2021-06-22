@@ -1,0 +1,103 @@
+Flask
+Flask-CORS
+Unittest
+jsonify
+
+API: Application Programming Interface: created to help 2 different systems interact with one another 
+
+APIS:
+  Doesn't expose application implementation
+  Controlled exposure of your application and your data
+  Standardized way of accessing data
+
+Examples:
+  Google Maps
+  Stripe
+  Facebook
+  Instagram
+  Spotify
+
+How APIs Work:
+  Ex
+  client banker vault 
+  
+  client api server database
+
+  client sends a request 
+
+  server parses the request
+
+  server returns the response back to the client 
+
+  client renders the response 
+
+Postman blog: What is an API
+https://blog.postman.com/intro-to-apis-what-is-an-api/
+
+Internet Protocols
+
+  Internet Protocol (IP): protocol for sending data from one computer to another across the internet 
+    IP Address: 
+      Unique from computer to computer
+
+  Other protocols:
+    TCP: Transmission Control Protocol: Used for data transmission but for a different layer of internet
+    File Transfer Protocol (FTP): transfer files between server and client 
+
+    HTTP: Hypertext Transmission Protocl: transmitting text and hyperlinks 
+
+    Different layers of internet: https://blog.postman.com/intro-to-apis-what-is-an-api/
+
+**API handles HTTP requests and HTTP functions over TCP (Transmission Control Protocol)
+
+RESTful APIs
+
+REpresentational State Transfer 
+
+Architectural style used by RESTful APIs
+
+Roy Fielding in 2000
+
+Key principles:
+  Uniform Interface: Resources, Representation and Self Description Messages
+    Resources
+    Representation:
+      What information
+      How it's shaped
+      What does client need to see, only send what they need
+      format: text, HTML, json
+      send description info so client knows how to parse
+  Stateless: Self-contained requests
+    Each request is standalone
+    One request is not based on another 
+    Client does not need to store application data to make subsequent requests 
+  Client-Server: must be both client/server in architecture
+  Cacheable and Layered System:
+    Makes network more efficient 
+    Can cache (store) information 
+
+Summary of REST principles:
+  Uniform Interface:
+    standardized way of accessing and processing data resources
+    unique URLs, self description messages in server response that describe how to process the representation (JSON vs XML) of the data resource
+
+  Stateless:
+    Every client request is self-contained (server doesn't need to store any applicatioin data in order to respond to subsequent requests)
+
+    **stateless servers make application scalable 
+    
+  Client-Server: client/server must exist in architecture
+
+  Cacheable and Layered Systems: to increase networking efficiency
+
+API Server:
+  How to receive requests
+  Parse those requests 
+  Send responses well formatted and informative for the client 
+  
+  Middleman between client and data 
+  Maintain data integrity
+  Communication to client is clear/well documented 
+  Data secured and used by many clients 
+
+
