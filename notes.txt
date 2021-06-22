@@ -100,4 +100,173 @@ API Server:
   Communication to client is clear/well documented 
   Data secured and used by many clients 
 
+Intro to HTTP
+
+Intro to Flask
+
+Write Flask Endpoints
+
+Intro to Curl/Chrome Dev Tools 
+
+Lesson Outline
+
+  HTTP Basics
+    Methods, Requests, Responses, Status Codes
+
+  Flask Microframework
+    basic endpoints
+    testing response using Curl 
+
+HTTP: Hypertext Transfer Protocol
+  Foundation of internet communication since 1990
+  Features
+    Connectionless
+      For each request/response pair between client and 
+      server, there this 1 connection. 
+        request - opens a connection
+        response - closes the connection 
+        when connection is open, there are ports on client and server that are occupied. only keep those ports occupied when there is a request/response interaction. 
+
+    Stateless
+      No link between successive requests
+      One request does not impact next request
+      A lot easier to debug if request fails 
+      ***is NOT sessionless
+      Has sessions: share the same context across different requests 
+      As navigate on a site, you're in the same session (headers/cookies/caching, can create a sessions that are shared across those requests, give the same context. 
+
+    Media independent
+      Any type of data can be sent with HTTP
+      Client/Server must know how to process that info 
+      Message must identify, what is the Content Type (text/html/json), so client/server know how to process the data. 
+    
+    Elements:
+      URI: Uniform Resource Identifier
+        Specific address for resource that you want 
+      Messages: Requests/Response 
+        URLs (address of resource) are type of URI (name or address of resource)
+
+    Status Codes:
+      Response is sent with a status code: 200, 404 etc.
+
+Summary: 
+  HTTP Features:
+    Connectionless: 
+      Client/Server only maintain a connection during the response and request. 
+      Client sends a request - connection opens 
+      Client receives a response from the Server - connection is closed 
+
+    Stateless:
+      No dependency between successive requests
+
+    Not Sessionless:
+      Headers/cookies used to create sessions to enable HTTP requests to share the same context 
+
+    Media Independent: any type of data sent over HTTP as long as client/server know how to handle the data format. Will be using JSON data format. 
+
+ Elements:
+  Universal Resource Identifier
+    Scheme: specifies the protocol: http
+    Host: specifies the host that holds the resource: www.example.com
+    Path: specifies the resource requested, /tasks
+    Query: optional component - query string provides information resource can use such as search parameter. /term=homeowork
+
+Overview of http https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
+
+HTTP Request Elements
+  GET http://www.example.com/tasks?term=homework
+
+  GET: method 
+  Path: http://wwww.example.com/tasks?term=homework
+  HTTP/2.0: HTTP version
+  Accept-Language: en - Headers (optional) 
+
+  GET /tasks?term=homework HTTP/2.0
+
+  GET: Method
+  Path: /tasks?term=homework
+  Host: http://www.example.com
+  Headers: Accept-Language: en
+
+HTTP Requests
+  GET: only retrieves information for the request resource of the given URI
+
+  POST: Send data to the server to create a new resource
+
+  PUT: Replaces all of the representation of the target resource with the request data (ex text but no image sent, replaces the whole thing, so now image is lost) 
+
+  PATCH: partially modifies representation of the target resource with the request data. (ex text but now image sent, updates the text and leaves image alone)
+
+  DELETE: removes entire representtion of the resource
+
+  OPTIONS: Sends communication options for the requested resource 
+
+HTTP Requests Summary:
+  Elements:
+    Method: operation to be performed 
+    Path: URL of resource to be fetched, excluding scheme and host 
+    HTTP:Version
+    Headers: optional info ex Accept-Language
+    Body: optional information usually for POST/PATCH - contains resource sent to server 
+
+  Request Methods: 
+    GET: retrieves info
+    POST: sends data to create a new resource
+    PUT: Replaces all representation with request data
+    PATCH: Partially modifies represenatation 
+    DELETE: Removes all representation of resource 
+    OPTIONS: Ssends communication options for requested resource 
+
+External resource: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP
+
+
+HTTP Responses
+
+  HTTP/2.0 200 OK
+
+  HTTP Version: HTTP/2.0
+  Status Code: 200
+  Status Message: OK 
+  Headers (optional): Date: Fri, Content-Type: text/html
+
+Status Codes Categories:
+  1xx: Informational 
+  2xx: Success
+  3xx: Redirection
+  4xx: Client Error: Request misformatted etc. 
+  5xx: Server Error: Request fine, but error happened on backend. 
+
+Code Message
+100  Continue
+200  OK
+201  Created (Post request)
+304  Not modified (Patch unsuccessful)
+400  Bad Request
+401  Unauthorized
+404  Not found: whatever resource looking for not exist
+500  Something happened on the server and not able to complete request 
+
+Codes in 5 categories:
+  1xx: Informational 
+  2xx: Success
+  3xx: Redirection
+  4xx: Client Error
+  5xx: Server Error 
+
+Common Codes:
+  200: OK
+  201: Created
+  304: Not Modified 
+  400: Bad request
+  401: Unauthorized
+  404: Not Found
+  405: Method Not Allowed
+  500: Internal Server Error 
+
+Introduction to Flask
+  Flask: Microframework that is simple and extensible
+  Create basic flask application 
+  Write basic endpoint
+  Curl/Chrome Dev Tools to check 
+
 
