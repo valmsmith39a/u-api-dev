@@ -1,0 +1,43 @@
+Request Methods: 
+    GET: retrieves info
+    POST: sends data to create a new resource
+    PUT: Replaces all representation with request data
+    PATCH: Partially modifies represenatation 
+    DELETE: Removes all representation of resource 
+    OPTIONS: Ssends communication options for requested resource 
+
+**
+
+Codes in 5 categories:
+  1xx: Informational 
+  2xx: Success
+  3xx: Redirection
+  4xx: Client Error
+  5xx: Server Error 
+
+**
+
+curl Command Line Options 
+
+curl --help 
+
+Option Long form         Example 
+-X     --request COMMAND curl -x POST <url>
+-d     --data DATA            curl -d '{"name": "Bob"}' <url>
+-F     --form CONTENT         curl -X POST -F "name=user" <url>
+-u     --user USER[:PASSWORD] curl --user bob:secret <url> 
+
+**
+
+
+Try piping the output to the jq, a command-line JSON processor, as shown below:
+curl https://pokeapi.co/api/v2/move/47 | jq '.'
+
+**
+
+Art of Scripting HTTP: https://curl.se/docs/httpscripting.html
+
+
+**
+
+

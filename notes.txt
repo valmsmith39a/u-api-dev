@@ -269,4 +269,49 @@ Introduction to Flask
   Write basic endpoint
   Curl/Chrome Dev Tools to check 
 
+Chrome Dev Tools
+
+Network Tab 
+
+Name: endpoint to get requested resource
+
+Status of that request 
+
+Type: type of the Media
+
+Time: how much time endpoint takes is important.
+
+Request URL
+
+Request Method: Ex GET
+
+Curl: look at what endpoint returning 
+
+command line tool 
+
+make requests to various endpoints 
+
+curl -X POST <url>
+
+-X: command line option 
+
+POST: Method 
+
+Ex 
+
+curl https://restcountries.eu/rest/v2/currency/cop
+
+curl --help 
+
+Curl Command Line Options 
+
+Option Long form         Example 
+-X     --request COMMAND curl -x POST <url>
+-d     --data DATA            curl -d '{"name": "Bob"}' <url>
+-F     --form CONTENT         curl -X POST -F "name=user" <url>
+-u     --user USER[:PASSWORD] curl --user bob:secret <url>  
+
+
+Try piping the output to the jq, a command-line JSON processor, as shown below:
+curl https://pokeapi.co/api/v2/move/47 | jq '.'
 
