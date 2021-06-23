@@ -40,4 +40,64 @@ Art of Scripting HTTP: https://curl.se/docs/httpscripting.html
 
 **
 
+Principles
+Should be intuitive
+
+Organize by resource
+	Use nouns in the path, not verbs
+	The method used will determine the operation taken
+	GOOD:
+		https://example.com/posts
+	BAD:
+		https://example.com/get_posts
+Keep a consistent scheme
+	*** /collection/item/collection 
+	Plural nouns for collections
+	Use parameters to specify a specific item
+	GOOD:
+		https://example.com/entrees
+		https://example.com/entrees/5
+	BAD:
+		https://example.com/entree
+		https://example.com/entree_five
+Don’t make them too complex or lengthy
+	No longer than collection/item/collection
+	GOOD:
+		https://example.com/entrees/5/reviews
+	BAD:
+		https://example.com/entrees/5/customers/4/reviews
+
+/tasks GET all tasks, POST: Create a new task, PATCH: partial update of all tasks, DELETE: delete all tasks  
+
+/tasks/1 GET the details of task 1, POST: error, PATCH: partial update of task 1, Delete task 1 
+
+/tasks/1/notes Get all the notes for task 1, POST: Create a new note for task 1, PATCH: partial update of all notes of task 1, Delete all notes of task 1   
+
+***
+
+Cross Origin Resource Sharing: CORS
+	Security and the Same-Origin Policy (web browser allows scripts in one page to access data in another page, 
+	but only if they share the same origin) 
+
+
+	Different domains
+	Different subdomains (example.com and api.example.com)
+	Different ports (example.com and example.com:1234)
+	Different protocols (http://example.com and https://example.com)
+
+In order for the requests to be processed properly, CORS utilizes headers to specify what the server will allow:
+
+Access-Control-Allow-Origin
+	What client domains can access its resources. For any domain use *
+Access-Control-Allow-Credentials
+	Only if using cookies for authentication - in which case its value must be true
+Access-Control-Allow-Methods
+	List of HTTP request types allowed
+Access-Control-Allow-Headers
+	List of http request header values the server will allow, particularly useful if you use any custom headers
+
+
+
+
+
 

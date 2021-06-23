@@ -315,3 +315,233 @@ Option Long form         Example
 Try piping the output to the jq, a command-line JSON processor, as shown below:
 curl https://pokeapi.co/api/v2/move/47 | jq '.'
 
+Review: 
+
+HTTP: 
+	Requests and Responses 
+	Methods (GET, POST)
+	Status Codes 
+
+Introduction to Flask 
+	Simple app 
+
+Writing Flask Endpoints 
+	app route decorator 
+
+
+**
+
+Endpoints and Payloads 
+
+Organizing API Endpoints 
+
+Handling Cross-Origin Resource Sharing 
+
+Parsing request path and body 
+
+Flask and POST, PATCH and DELETE requests 
+
+Handling Errors 
+
+Flask-CORS 
+
+How to Organize API Endpoints 
+
+	Should be intuitive 
+
+	Organize by resource 
+
+	*** Use nouns in path not verbs *** 
+
+		BAD: 
+				https://example.com/create-tasks 
+			https://example.com/send 
+
+		GOOD:
+			https://example.com/tasks
+			https://example.com/messages 
+
+		
+		Use Methods like GET, POST for verbs for the endpoints 
+
+		Want to GET https://example.com/tasks # want to GET tasks 
+
+	Keep a consistent scheme 
+		
+		Plural nouns for collections 
+
+		Use a parameter to specify an item 
+
+		BAD: 
+			https://example.com/user/task/ # this is BAD for specifying 1 item 
+
+	  GOOD: 
+			https://example.com/users/1/tasks 
+		
+	Don't make endpoints too complex or lengthy 
+
+		No longer than 3 
+
+			collection/item/collection 
+
+		  BAD 
+				https://example.com/users/1/tasks/8/notes
+
+			GOOD 
+				https://example.com/tasks/8/notes # All the notes with id of 8 
+				https://example.com/users/1/tasks # All tasks for user 1 
+
+/tasks GET all tasks 
+
+/tasks/1 GET the details of task 1
+
+/tasks/1/notes Get all the notes for task 1 
+
+
+Cross Origin Resource Sharing 
+
+URL of web app is different origin of api 
+
+Cross Origin Resource Sharing needed to make API call to another origin 
+
+CORS
+	Security and the Same-Origin Policy (web browser allows scripts in one page to access data in another page, 
+		but only if they share the same origin)   
+	Block requests from rogue JavaScript
+
+	Triggered when: 
+		Different domains 
+		Different subdomains (example.com and api.example.com) 
+		Different ports 
+		Different protocols
+
+		Different domains
+		Different subdomains (example.com and api.example.com)
+		Different ports (example.com and example.com:1234)
+		Different protocols (http://example.com and https://example.com)
+
+Access-Control-Allow-Origin: What client domains can access its resources 
+Access-Control-Allow-Credentials: If using cookies for authentication
+Access-Control-Allow-Methods: List of HTTP methods allowed
+
+CORS headers to specify what server will allow: 
+
+Access-Contro-Allow-Origin
+	What client domains can access its resources. For any domain use * 
+
+Access-Control-Allow-Credentials	
+	Only if using cookies for authentication - in which case its value must be true 
+
+Access-Control-Allow-Methods 
+	List of HTTP request types allowed 
+
+Access-Control-Allow-Headers
+	List of http request header values the server will allow particularly useful if use any custom headers  
+
+**
+Flask CORS
+In order to install Flask-CORS simply run
+pip3 install -U flask-cors
+
+Once Flask-CORS is installed, you simply import the CORS function and call it with your app instance as a parameter. This will initialize Flask-CORS will all default options.
+from flask_cors import CORS
+app = Flask(__name__, instance_relative_config=True)
+CORS(app)
+
+Resource-Specific Usage There are multiple options you can use to specify your Flask-CORS behavior. One typical one is resources, which contains a dictionary whose keys are regular expressions and values are dictionary or kwargs
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+If you need to enable CORS on a given route, like those non-simple requests, you can use @cross_origin() to enable it.
+
+@app.route("/hello")
+@cross_origin()
+def get_greeting():
+ return jsonify({'message':'Hello, World!'})
+
+from flask import Flask, jsonify
+from models import setup_db, Plant
+from flask_cors import CORS, cross_origin
+
+def create_app(test_config=None):
+    app = Flask(__name__, instance_relative_config=True)
+    setup_db(app)
+    #CORS(app, resources={r"*/api/*" : {origins: '*'}})
+    CORS(app)
+
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+        response.headers.add('Access-Control-Allow-Headers', 'GET, POST, PATCH, DELETE, OPTION')
+        return response
+
+    #@cross_origin
+    @app.route('/')
+    def hello_world():
+        return jsonify({'message':'HELLO, WORLD!'})
+    return app
+
+Create the database - Create the database and a user. Run the following:
+
+# Connect to the PostgreSQL
+psql postgres
+# Create the database,  *plantsdb*, and create a user `student`. Grant all privileges to the student
+\i plantsdb_setup.sql
+# Exit the PostgreSQL prompt
+\q
+
+# Mac users
+psql -f plants.psql -U student -d plantsdb
+# Linux users
+su - postgres bash -c "psql plantsdb < /path/to/plants.psql"
+
+**
+
+GET with parameters and pagination 
+POST 
+PATCH
+DELETE 
+Basic Error Handling 
+
+Flask Routes 
+
+Extended:
+Variable Rules 
+	http://www.example.com/entrees/1
+	@app.route('/entrees/<int:entree_id>')
+
+	converter syntax:
+		<converter.variable_name>
+
+Methods 
+	@app.route('/hello', methods=['GET, 'POST'])
+	def greeting():
+		if request.method == 'POST':
+			return create_greeting()
+		else:
+			return send_greeting()
+
+Pagination 
+
+Query parameters 
+
+https://example.come/entrees?page=1&allergens=peanuts
+
+On flask end 
+
+@app.route('/entrees', methods=['GET']
+	def get_entrees():
+		page = request.args.get('page', 1, type=int)
+
+When handling large collections of data, serialize/send all data to 
+frontend will slow down the response and rendering to the client 
+
+Common way to handle the issue is to paginate the data you're sending 
+and send it in chunks instead 
+
+
+
+
+
+
+
+
