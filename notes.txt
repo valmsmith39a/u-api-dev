@@ -538,10 +538,75 @@ frontend will slow down the response and rendering to the client
 Common way to handle the issue is to paginate the data you're sending 
 and send it in chunks instead 
 
+CORS
+
+endpoints CRUD
+
+pagination
+
+@app.errorhandling
+
+curl to test 
+
+***
+API TESTING
+**
+
+Define test case class
+
+Define / implement the setUp function: runs before each test 
+  initialize app 
+
+Define the tearDown method: runs after each test
+
+Define tests 
+
+Run the test suite
+
+class AppNameTestCase(unittest.TestCase):
+    """This class represents the ___ test case"""
+
+    def setUp(self):
+        """Executed before each test. Define test variables and initialize app."""
+        self.client = app.test_client
+        pass
+
+    def tearDown(self):
+        """Executed after reach test"""
+        pass
+
+    def test_given_behavior(self):
+        """Test _____________ """
+        res = self.client().get('/')
+
+        self.assertEqual(res.status_code, 200)
+
+# Make the tests conveniently executable
+if __name__ == "__main__":
+unittest.main()
 
 
+Test Driven Development 
 
+Write test 
+  What is the expected behavior 
+  What assumptions 
 
+Fail Test 
+  Should fail the test 
 
+Write code 
+  
+Pass Test 
 
+Refactor
+
+Benefits of TDD
+1. Define expected behavior
+2. Concise code 
+3. Keeps development cycle short and rapid 
+
+Review:
+API: multiple kinds of requests, successful/error responses 
+Test APIs, Test driven development 
 
