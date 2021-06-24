@@ -6,7 +6,8 @@ from sqlalchemy.sql.schema import PrimaryKeyConstraint
 
 database_name = 'plants'
 # Feel free to remove the password argument from the below format() method
-database_path = "postgres://{}:{}@{}/{}".format('postgres', '', 'localhost:5432', database_name)
+# database_path = "postgres://{}:{}@{}/{}".format('postgres', '', 'localhost:5432', database_name)
+database_path = os.getenv("SQL_URI")
 db = SQLAlchemy()
 
 def setup_db(app, database_path=database_path):
